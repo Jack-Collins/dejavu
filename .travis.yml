@@ -8,3 +8,5 @@ services:
 before_install:
 - docker build -t dejavu .
 - docker run -it dejavu /bin/bash
+
+
