@@ -10,7 +10,12 @@ RUN dnf update -y; dnf clean all
 
 #RUN yum -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio
 
-RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio
+RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio community-mysql-server
+
+#setup the database:
+RUN service mysqld start
+RUN CREATE DATABASE IF NOT EXISTS dejavu;
+RUN exit
 
 RUN pip install --upgrade pip
 
