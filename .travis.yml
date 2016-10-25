@@ -13,5 +13,5 @@ before_install:
 - docker run -it dejavu /bin/bash
 - cd /app
 - python example.py
-
+- exit
 
