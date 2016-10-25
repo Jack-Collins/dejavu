@@ -13,7 +13,7 @@ RUN dnf update -y; dnf clean all
 RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio community-mysql-server community-mysql
 
 #setup the database:
-RUN /bin/systemctl start  mysqld.service
+RUN /usr/bin/systemctl start  mysqld.service
 RUN mysql -u root -e 'CREATE DATABASE IF NOT EXISTS dejavu; exit'
 
 RUN pip install --upgrade pip
