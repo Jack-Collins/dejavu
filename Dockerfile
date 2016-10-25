@@ -17,7 +17,7 @@ RUN pip install virtualenv
 RUN virtualenv --system-site-packages env_with_system
 
 RUN source env_with_system/bin/activate
-RUN pip install https://github.com/worldveil/dejavu/zipball/master
+#RUN pip install https://github.com/worldveil/dejavu/zipball/master
 
 
 RUN mkdir app
