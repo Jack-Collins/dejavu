@@ -6,8 +6,10 @@ RUN rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-s
  	&& rpm -ivh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm \
 	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-*       
 
-RUN dnf update -y; dnf clean all                                                                                                         
+RUN dnf update -y; dnf clean all 
+
 #RUN yum -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio
+
 RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio
 
 RUN pip install --upgrade pip
