@@ -10,8 +10,6 @@ services:
 
 before_install:
 - docker build -t dejavu .
-- docker run -it dejavu /bin/bash
-- cd /app
-- python example.py
-- exit
+- docker run -it dejavu /bin/bash -c "cd /app; python example.py; exit"
+
 
