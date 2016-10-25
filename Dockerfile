@@ -1,7 +1,10 @@
 FROM fedora
 MAINTAINER Ravel Antunes
 
-RUN ls -a
+RUN which service
+RUN /usr/bin/ls -a
+RUN /bin/ls -a
+
 
 #Add repositores for ffmpeg                                                     
 RUN rpm -ivh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm \
