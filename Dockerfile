@@ -14,8 +14,7 @@ RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python p
 
 #setup the database:
 RUN service mysqld start
-RUN CREATE DATABASE IF NOT EXISTS dejavu;
-RUN exit
+RUN mysql -u root -e 'CREATE DATABASE IF NOT EXISTS dejavu; exit'
 
 RUN pip install --upgrade pip
 
