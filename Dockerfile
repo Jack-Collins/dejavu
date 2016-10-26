@@ -14,6 +14,7 @@ RUN dnf update -y; dnf clean all
 RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python python-pip gcc MySQL-python pyaudio community-mysql-server community-mysql
 
 #setup the database:
+RUN /sbin/init
 RUN systemctl start mysqld.service
 RUN mysql -u root -e 'CREATE DATABASE IF NOT EXISTS dejavu; exit'
 
@@ -30,7 +31,6 @@ RUN source env_with_system/bin/activate
 RUN mkdir app
 ADD . /app      
 
-CMD ["/usr/sbin/init"]
 
 
 
