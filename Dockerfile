@@ -30,6 +30,8 @@ RUN source env_with_system/bin/activate
 RUN mkdir app
 ADD . /app      
 
+CMD ["/usr/sbin/init"]
+
 
 
                                                                                  
