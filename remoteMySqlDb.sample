@@ -1,7 +1,7 @@
 {
 
     "database": {
-        "host": "31.220.16.221",
+        "host": "db4free.net",
         "user": "u458575081_fyp",
         "passwd": "p77X9WqsN7", 
         "db": "u458575081_fyp"
