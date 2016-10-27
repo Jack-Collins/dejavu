@@ -1,0 +1,8 @@
+{
+    "database": {
+        "host": "sql8.freemysqlhosting.net",
+        "user": "sql8141881",
+        "passwd": "ZUPdPraBiG", 
+        "db": "sql8141881"
+    }
+}
