@@ -67,3 +67,79 @@ class OrchestrateDatabase(Database):
         This also removes all songs that have been added but have no
         fingerprints associated with them.
         """
+
+    def empty(self):
+        """
+        Called when the database should be cleared of all data.
+        """
+        pass
+
+    def delete_unfingerprinted_songs(self):
+        """
+        Called to remove any song entries that do not have any fingerprints
+        associated with them.
+        """
+        pass
+    
+    def get_num_songs(self):
+        """
+        Returns the amount of songs in the database.
+        """
+        pass
+
+    def get_num_fingerprints(self):
+        """
+        Returns the number of fingerprints in the database.
+        """
+        pass
+
+    def get_songs(self):
+        """
+        Returns all fully fingerprinted songs in the database.
+        """
+        pass
+    
+    def get_song_by_id(self, sid):
+        """
+        Return a song by its identifier
+        sid: Song identifier
+        """
+        pass
+    
+    def insert(self, hash, sid, offset):
+        """
+        Inserts a single fingerprint into the database.
+          hash: Part of a sha1 hash, in hexadecimal format
+           sid: Song identifier this fingerprint is off
+        offset: The offset this hash is from
+        """
+        pass
+
+    def query(self, hash):
+        """
+        Returns all matching fingerprint entries associated with
+        the given hash as parameter.
+        hash: Part of a sha1 hash, in hexadecimal format
+        """
+        pass
+    
+    def get_iterable_kv_pairs(self):
+        """
+        Returns all fingerprints in the database.
+        """
+        pass
+    
+    def return_matches(self, hashes):
+        """
+        Searches the database for pairs of (hash, offset) values.
+        hashes: A sequence of tuples in the format (hash, offset)
+        -   hash: Part of a sha1 hash, in hexadecimal format
+        - offset: Offset this hash was created from/at.
+        Returns a sequence of (sid, offset_difference) tuples.
+                      sid: Song identifier
+        offset_difference: (offset - database_offset)
+        """
+        pass
+
+
+
