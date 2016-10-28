@@ -97,7 +97,10 @@ class OrchestrateDatabase(Database):
         """
         Returns all fully fingerprinted songs in the database.
         """
-        pass
+        pages = client.search('cafes', 'fingerprinted:True')
+        # get all items in the collection
+        items = pages.all()
+        return items
     
     def get_song_by_id(self, sid):
         """
