@@ -13,6 +13,8 @@ RUN dnf -y install numpy scipy python-matplotlib portaudio-devel ffmpeg python p
 RUN pip install --upgrade pip
 
 RUN pip install pydub
+RUN pip install porc
+
 RUN pip install virtualenv
 RUN virtualenv --system-site-packages env_with_system
 
