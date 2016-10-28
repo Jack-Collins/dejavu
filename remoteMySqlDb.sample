@@ -1,9 +1,9 @@
 {
 
     "database": {
-        "host": "db4free.net",
-        "user": "u458575081_fyp",
-        "passwd": "p77X9WqsN7", 
-        "db": "u458575081_fyp"
+        "host": "https://stevie.heliohost.org:2083",
+        "user": "jackenda_dejavu",
+        "passwd": "zlVbLJvxHr2c", 
+        "db": "jackenda_dejavu"
     }
 }
