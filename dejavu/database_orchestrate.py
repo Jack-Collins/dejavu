@@ -2,6 +2,8 @@
 from porc import Client
 from porc import Patch
 
+from dejavu.database import Database
+
 client = new Client("7e23e64c-f1a8-4072-90c7-6c00c804c0e5")
 
 class OrchestrateDatabase(Database):
