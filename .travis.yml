@@ -10,4 +10,4 @@ services:
 
 before_install:
 - docker build -t dejavu .
-- docker run -it dejavu /bin/bash -c "cd /app; sh test_dejavu.sh"
+- docker run -it dejavu /bin/bash -c "cd /app; python example.py"
