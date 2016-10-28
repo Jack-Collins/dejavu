@@ -1,5 +1,6 @@
 
-from porc import Client
+from porc import 
+
 from porc import Patch
 
 from dejavu.database import Database
@@ -97,7 +98,7 @@ class OrchestrateDatabase(Database):
         """
         Returns all fully fingerprinted songs in the database.
         """
-        pages = client.search('cafes', 'fingerprinted:True')
+        pages = client.search(SONGS_TABLENAME, 'fingerprinted:True')
         # get all items in the collection
         items = pages.all()
         return items
