@@ -1,7 +1,7 @@
 {
     "database": {
       "host": "https://api.aws-eu-west-1.orchestrate.io/",
-      "api_key": "YOUR_API_KEY", 
+      "api_key": "YOUR_API_KEY"
     },
     "database_type" : "orchestrate"
 }
