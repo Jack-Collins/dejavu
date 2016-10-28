@@ -6,7 +6,7 @@ from dejavu import Dejavu
 from dejavu.recognize import FileRecognizer, MicrophoneRecognizer
 
 # load config from a JSON file (or anything outputting a python dictionary)
-with open("remoteMySqlDb.sample") as f:
+with open("dejavu.orchestrate.SAMPLE") as f:
     config = json.load(f)
 
 if __name__ == '__main__':
