@@ -4,11 +4,11 @@ from porc import Patch
 
 from dejavu.database import Database
 
-client = new Client("7e23e64c-f1a8-4072-90c7-6c00c804c0e5")
-
 class OrchestrateDatabase(Database):
     type = "orchestrate"
 
+    client = new Client("7e23e64c-f1a8-4072-90c7-6c00c804c0e5")
+    
      # tables
         FINGERPRINTS_TABLENAME = "fingerprints"
         SONGS_TABLENAME = "songs"
