@@ -61,3 +61,9 @@ class OrchestrateDatabase(Database):
 
 
 
+    def setup(self):
+        """
+        Creates any non-existing tables required for dejavu to function.
+        This also removes all songs that have been added but have no
+        fingerprints associated with them.
+        """
