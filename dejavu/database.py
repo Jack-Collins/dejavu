@@ -174,3 +174,6 @@ def get_database(database_type=None):
 
 # Import our default database handler
 import dejavu.database_sql
+
+# Import orchestrate
+import dejavu.database_orchestrate
