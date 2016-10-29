@@ -30,10 +30,11 @@ class OrchestrateDatabase(Database):
         """
         Inserts song in the database and returns the ID of the inserted record.
         """
-        return client.post(SONGS_TABLENAME, {
+        response = client.post(SONGS_TABLENAME, {
           "songname": songname, 
           "file_hash" : file_hash
         })
+        return response.key
 
     
     def insert_hashes(self, sid, hashes):
