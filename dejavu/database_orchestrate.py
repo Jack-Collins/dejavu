@@ -30,7 +30,7 @@ class OrchestrateDatabase(Database):
         """
         Inserts song in the database and returns the ID of the inserted record.
         """
-        client.post(SONGS_TABLENAME, {
+        return client.post(SONGS_TABLENAME, {
           "songname": songname, 
           "file_hash" : file_hash
         })
