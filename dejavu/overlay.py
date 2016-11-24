@@ -12,4 +12,4 @@ output = sound1_10_db_quieter.overlay(sound2_very_loud, position = 0)
 
 #save resulting audio:
 
-output.export("mixed_sound.mp3", format="mp3")
+output.export("mp3/overlayed-track.mp3", format="mp3")
