@@ -1,7 +1,7 @@
 from pydub import AudioSegment
 
 #read in audio files
-sound1 = AudioSegment.from_mp3("../mp3/Over - KIngs of Leon.mp3")
+sound1 = AudioSegment.from_mp3("../mp3/Over - Kings of Leon.mp3")
 sound2 = AudioSegment.from_mp3("../mp3/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3")
 
 sound1_10_db_quieter = sound1 - 10
