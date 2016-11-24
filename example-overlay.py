@@ -16,7 +16,7 @@ if __name__ == '__main__':
 	sound1 = AudioSegment.from_mp3("overlays/Over - Kings of Leon_88_5sec.mp3")
 	sound2 = AudioSegment.from_mp3("overlays/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia_22_5sec.mp3")
 
-	sound1_10_db_quieter = sound1 - 10
+	sound1_10_db_quieter = sound1 - 36
 	sound2_very_loud = sound2 #+ 36
 
 	#overlay the loud white noise on the quiet song:
