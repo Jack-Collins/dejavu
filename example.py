@@ -20,7 +20,12 @@ if __name__ == '__main__':
 	# Recognize audio from a file
 	song = djv.recognize(FileRecognizer, "mp3/Sean-Fournier--Falling-For-You.mp3")
 	print "From file we recognized: %s\n" % song
-
+	
+	# Recognize audio from a file with white noise overlayed on top of it
+	
+	song = djv.recognize(FileRecognizer, "mp3/overlayed-track.mp3")
+	print "From file we recognized: %s\n" % song
+	
 	# Or recognize audio from your microphone for `secs` seconds
 	secs = 5
 	song = djv.recognize(MicrophoneRecognizer, seconds=secs)
