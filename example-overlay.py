@@ -11,10 +11,10 @@ with open("dejavu.cnf.SAMPLE") as f:
     config = json.load(f)
 
 if __name__ == '__main__':
-	generate_test_files("mp3", "overlays", 5, fmts=[".mp3", ".wav"], padding=10)
+	#generate_test_files("mp3", "overlays", 5, fmts=[".mp3", ".wav"], padding=10)
 	#read in audio files
-	sound1 = AudioSegment.from_mp3("overlays/Over - Kings of Leon.mp3")
-	sound2 = AudioSegment.from_mp3("overlays/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3")
+	sound1 = AudioSegment.from_mp3("overlays/Over - Kings of Leon_88_5sec.mp3")
+	sound2 = AudioSegment.from_mp3("overlays/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia_22_5sec.mp3")
 
 	sound1_10_db_quieter = sound1 - 10
 	sound2_very_loud = sound2 + 36
