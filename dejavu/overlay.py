@@ -1,8 +1,8 @@
 from pydub import AudioSegment
 
 #read in audio files
-sound1 = AudioSegment.from_mp3("U:\Cadet - Letter To Krept.mp3")
-sound2 = AudioSegment.from_mp3("U:\white noise.mp3")
+sound1 = AudioSegment.from_mp3("../mp3/Bugzy Malone - MAD (Official Video).mp3")
+sound2 = AudioSegment.from_mp3("../mp3/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3")
 
 sound1_10_db_quieter = sound1 - 10
 sound2_very_loud = sound2 + 36
