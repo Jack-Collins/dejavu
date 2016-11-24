@@ -22,6 +22,6 @@ if __name__ == '__main__':
 	print "From file we recognized: %s\n" % song
 	
 	# Recognize audio from a file with white noise overlayed on top of it
-	song = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3", seconds=10)
+	song = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3", 10)
 	print "From file we recognized: %s\n" % song
 	
