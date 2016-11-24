@@ -18,10 +18,10 @@ if __name__ == '__main__':
 	djv.fingerprint_directory("mp3", [".mp3"])
 
 	# Recognize audio from its original file
-	song = djv.recognize(FileRecognizer, "mp3/Over - Kings of Leon.mp3", 10)
+	song = djv.recognize(FileRecognizer, "mp3/Over - Kings of Leon.mp3")
 	print "From file we recognized: %s\n" % song
 	
 	# Recognize audio from a file with white noise overlayed on top of it
-	song = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3", 10)
+	song = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3")
 	print "From file we recognized: %s\n" % song
 	
