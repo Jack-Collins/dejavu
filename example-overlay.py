@@ -11,10 +11,10 @@ with open("dejavu.cnf.SAMPLE") as f:
     config = json.load(f)
 
 if __name__ == '__main__':
-
+	generate_test_files("mp3", "overlays", 5, fmts=[".mp3", ".wav"], padding=10)
 	#read in audio files
-	sound1 = AudioSegment.from_mp3("mp3/Over - Kings of Leon.mp3")
-	sound2 = AudioSegment.from_mp3("mp3/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3")
+	sound1 = AudioSegment.from_mp3("overlays/Over - Kings of Leon.mp3")
+	sound2 = AudioSegment.from_mp3("overlays/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3")
 
 	sound1_10_db_quieter = sound1 - 10
 	sound2_very_loud = sound2 + 36
@@ -28,9 +28,6 @@ if __name__ == '__main__':
 	
 	# create a Dejavu instance
 	djv = Dejavu(config)
-
-	# Fingerprint all the mp3's in the directory we give it
-	djv.fingerprint_directory("mp3", [".mp3"])
 
 	# Recognize audio from its original file
 	song = djv.recognize(FileRecognizer, "mp3/Over - Kings of Leon.mp3")
