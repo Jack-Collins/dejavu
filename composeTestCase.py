@@ -1,4 +1,5 @@
 from pydub import AudioSegment
+import random
 #average mp3 bd level approx 85
 # range to generate data for could be considered 50 - 100 db for now? ie + 15 or - 35
 
@@ -10,12 +11,23 @@ from pydub import AudioSegment
        # composeTestCase(pathToSong, timeSnippet, originalSongVolumeShift, overlayedNoiseVolumeShifts)
 
 def test():
-    composeTestCase("C:\Users\collijac\Desktop\Over - Kings of Leon.mp3", 5, 15, {"C:\Users\collijac\Desktop\Coffee Shop Sound Effect.mp3" : 10})
-def composeTestCase(pathToOriginalSong, timeSnippet, originalSongVolumeShift, overlayedNoiseVolumeShifts):
-    originalAudio = AudioSegment.from__mp3(pathToOriginalSong)
-    print(len(originalAudio))
-    originalAudio = originalAudio[:10]
-    print(len(originalAudio))
+	output = composeTestCase("mp3/Alt-J - Fitzpleasure (Live on KEXP)", 5000, 15, {"mp3/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3" : 10})
+	output.export("overlays/overlayed-track.mp3", format="mp3")
 
-    #for noise in overlayedNoiseVolumeShifts:
-    #originalAudio = originalAudio.overlay(noise.pathToNoise + noise.volumeShift)
+def composeTestCase(pathToOriginalSong, timeSnippet, originalSongVolumeShift, overlayedNoiseVolumeShifts):
+	originalAudio = AudioSegment.from_mp3(pathToOriginalSong)
+	audioSnippet = trimAudio(originalAudio, timeSnippet, 10000)
+
+	for noise in overlayedNoiseVolumeShifts.keys():
+		overlay = AudioSegment.from_mp3(noise)
+		overlaySnippet = trimAudio(overlay, timeSnippet, 10000)
+    	audioSnippet = audioSnippet.overlay(overlaySnippet, position = 0)
+	return audioSnippet
+	
+
+
+def trimAudio(audio, time, padding):
+	randomPosition = random.randint(padding, len(audio) - padding - time)
+	audio = audio[randomPosition:randomPosition + time]
+	return audio
+test()
