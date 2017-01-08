@@ -36,10 +36,10 @@ with open("dejavu.cnf.SAMPLE") as f:
 
 if __name__ == '__main__':
 	with open("results.csv", "wb") as csvfile:
-		for i in range(10000):
-			randomTimeSnippet = random.randint(100, 10000)
-			randomOriginalSoundLevel = random.randint(-30, 20)
-			randomWhiteNoiseLevel = random.randint(-3000, -200)
+		for i in range(1000):
+			randomTimeSnippet = random.randint(1000, 10000)
+			randomOriginalSoundLevel = random.randint(-60, 50)
+			randomWhiteNoiseLevel = random.randint(-60, -50)
 
 			#compose test case
 			snippets = composeTestCase("mp3/Sean-Fournier--Falling-For-You.mp3", randomTimeSnippet, randomOriginalSoundLevel, {"mp3/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3" : randomWhiteNoiseLevel})
@@ -59,10 +59,15 @@ if __name__ == '__main__':
 			# Recognize audio from a file with various noises overlayed on top of it
 			overlayedAudio = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3")
 			#print "From file we recognized: %s\n" % overlayedAudio
-			if(originalAudio["song_id"] == overlayedAudio["song_id"]):
-				print "Percentage of fingerprints retained %s" % (overlayedAudio["confidence"]*100.0/originalAudio["confidence"] )
-				writer = csv.writer(csvfile, delimiter=',')
-				writer.writerow([randomTimeSnippet, randomOriginalSoundLevel, randomWhiteNoiseLevel, (overlayedAudio["confidence"]*100.0/originalAudio["confidence"] )])
-			else:
+			try:
+				if(originalAudio["song_id"] == overlayedAudio["song_id"]):
+					print "Percentage of fingerprints retained %s" % (overlayedAudio["confidence"]*100.0/originalAudio["confidence"] )
+					writer = csv.writer(csvfile, delimiter=',')
+					writer.writerow([randomTimeSnippet, randomOriginalSoundLevel, randomWhiteNoiseLevel, (overlayedAudio["confidence"]*100.0/originalAudio["confidence"] ), 'CORRECT'])
+				else:
+					print "Incorrect match"
+					writer.writerow([randomTimeSnippet, randomOriginalSoundLevel, randomWhiteNoiseLevel, 0, 'INCORRECT'])
+			except TypeError:
 				print "Incorrect match"
-	i
+				writer.writerow([randomTimeSnippet, randomOriginalSoundLevel, randomWhiteNoiseLevel, 0, 'INCORRECT'])
+		i
