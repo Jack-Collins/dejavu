@@ -15,7 +15,7 @@ if __name__ == '__main__':
 	djv = Dejavu(config)
 
 	# Fingerprint all the mp3's in the directory we give it
-	djv.fingerprint_directory("mp3", [".mp3"])
+	djv.fingerprint_directory("mp3/hip-hop", [".mp3"])
 
 	# Recognize audio from a file
 	song = djv.recognize(FileRecognizer, "mp3/Sean-Fournier--Falling-For-You.mp3")

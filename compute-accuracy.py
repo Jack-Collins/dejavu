@@ -13,7 +13,6 @@ def composeTestCase(pathToOriginalSong, timeSnippet, originalSongVolumeShift, ov
 	originalAudio = AudioSegment.from_mp3(pathToOriginalSong)
 	audioSnippet = trimAudio(originalAudio, timeSnippet, 10000)
 	originalSnippet = audioSnippet
-	
 	audioSnippet = audioSnippet  + originalSongVolumeShift
 	for noise in overlayedNoiseVolumeShifts.keys():
 		overlay = AudioSegment.from_mp3(noise)
@@ -35,26 +34,21 @@ def trimAudio(audio, time, padding):
 with open("dejavu.cnf.SAMPLE") as f:
     config = json.load(f)
 
+correctCount = 0;
+
 if __name__ == '__main__':
-	with open("results_whitenoiseanalysis.csv", "wb") as csvfile:
-		for i in range(100):
+		for i in range(50):
 			randomTimeSnippet = random.randint(1000, 10000)
-			randomOriginalSoundLevel = random.randint(0, 0)
+			randomOriginalSoundLevel = random.randint(-60, 50)
 			randomWhiteNoiseLevel = random.randint(-60, 50)
-			randomCoffeeShopNoiseLevel = random.randint(-60000, -59000)
 
 			#compose test case
-			snippets = composeTestCase("mp3/Sean-Fournier--Falling-For-You.mp3", randomTimeSnippet, randomOriginalSoundLevel, {"overlays/whitenoise.mp3" : randomWhiteNoiseLevel, "overlays/Coffee Shop Sound Effect.mp3" : randomCoffeeShopNoiseLevel})
-			
-			#save resulting audio:
+			snippets = composeTestCase("mp3/Sean-Fournier--Falling-For-You.mp3", randomTimeSnippet, randomOriginalSoundLevel, {"mp3/Relaxing Fan White Noise For Sleeping, Studying, Soothing Crying Baby, Insomnia.mp3" : randomWhiteNoiseLevel})
+	
 			snippets[0].export("overlays/original-snippet.mp3", format="mp3")
 			snippets[1].export("overlays/overlayed-track.mp3", format="mp3")
-			
-			#Note original dBFS value of snippet along with dBFS change applied:
-			originalSnippet = AudioSegment.from_mp3("overlays/original-snippet.mp3")
-			audioSnippet = AudioSegment.from_mp3("overlays/overlayed-track.mp3")
-			dBFSOriginal = 	originalSnippet.dBFS	
-			dBFSChange = audioSnippet.dBFS - dBFSOriginal
+	
+			#save resulting audio:
 	
 			# create a Dejavu instance
 			djv = Dejavu(config)
@@ -66,15 +60,20 @@ if __name__ == '__main__':
 			# Recognize audio from a file with various noises overlayed on top of it
 			overlayedAudio = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3")
 			#print "From file we recognized: %s\n" % overlayedAudio
-			writer = csv.writer(csvfile, delimiter=',')
 			try:
 				if(originalAudio["song_id"] == overlayedAudio["song_id"]):
-					print "Percentage of fingerprints retained %s" % (overlayedAudio["confidence"]*100.0/originalAudio["confidence"] )
-					writer.writerow([dBFSOriginal, dBFSChange, randomTimeSnippet, randomWhiteNoiseLevel, randomCoffeeShopNoiseLevel, (overlayedAudio["confidence"]*100.0/originalAudio["confidence"] ), 'CORRECT'])
+					print "correct match"
+					correctCount = correctCount + 1
 				else:
 					print "Incorrect match"
-					writer.writerow([dBFSOriginal, dBFSChange, randomTimeSnippet, randomWhiteNoiseLevel, randomCoffeeShopNoiseLevel, 0, 'INCORRECT'])
 			except TypeError:
 				print "Incorrect match"
-				writer.writerow([dBFSOriginal, dBFSChange, randomTimeSnippet, randomWhiteNoiseLevel, randomCoffeeShopNoiseLevel, 0, 'INCORRECT'])
-		i
+		print "accuracy computed as %s" % str(correctCount*100.0 / i)
+		
+
+def fingerprintAndComputeAccuracy(fingerprintReduction, peakSort, defaultOverlapRatio, defaultFanValue, defaultAmpMin, peakNeighbourhoodSize):
+	# create a Dejavu instance
+	djv = Dejavu(config)
+
+	# Fingerprint all the mp3's in the directory we give it
+	djv.fingerprint_directory("mp3", [".mp3"])
