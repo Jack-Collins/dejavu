@@ -11,7 +11,7 @@ from dejavu.recognize import FileRecognizer, MicrophoneRecognizer
 from pydub import AudioSegment
 
 def composeTestCase(pathToOriginalSong, timeSnippet, originalSongVolumeShift, overlayedNoiseVolumeShifts):
-	print("File: %s" % pathToOriginalSong, "Attributes: %s" % str(originalSongVolumeShift) + "," + str(overlayedNoiseVolumeShifts.values()))
+	#print("File: %s" % pathToOriginalSong, "Attributes: %s" % str(originalSongVolumeShift) + "," + str(overlayedNoiseVolumeShifts.values()))
 	originalAudio = AudioSegment.from_mp3(pathToOriginalSong)
 	audioSnippet = trimAudio(originalAudio, timeSnippet, 10000)
 	originalSnippet = audioSnippet
@@ -39,7 +39,7 @@ with open("dejavu.cnf.SAMPLE") as f:
 
 if __name__ == '__main__':
 	with open("test_parameters.csv", "wb") as csvfile:
-		for i in range(1000):
+		for i in range(100):
 			randomTimeSnippet = random.randint(1000, 10000)
 			randomOriginalSoundLevel = random.randint(-30, 50)
 			randomWhiteNoiseLevel = random.randint(-30, 50)
@@ -56,11 +56,12 @@ if __name__ == '__main__':
 			reader = csv.reader(csvfile, delimiter=' ')
 
 			# remove old test suites
-			shutil.rmtree('test_suite_originals')	
-			shutil.rmtree('test_suite_overlays')			
-			os.mkdir('test_suite_originals')
-			os.mkdir('test_suite_overlays')
+			shutil.rmtree('test_suite_originals/' + genreDir)
+			shutil.rmtree('test_suite_overlays/' + genreDir)			
+			os.mkdir('test_suite_originals/' + genreDir)
+			os.mkdir('test_suite_overlays/' + genreDir)
 			correctCount = 0
+			totalMatchTime = 0
 			rowNum = 0
 			for row in reader:
 				rowNum = rowNum + 1
@@ -88,20 +89,23 @@ if __name__ == '__main__':
 				# Recognize audio from a file with various noises overlayed on top of it
 				overlayedAudio = djv.recognize(FileRecognizer, "overlays/overlayed-track.mp3")
 				#print "From file we recognized: %s\n" % overlayedAudio
+				totalMatchTime = totalMatchTime + overlayedAudio["match_time"]
 				try:
 					if(originalAudio["song_id"] == overlayedAudio["song_id"]):
-						print "correct match"
+						#print "correct match"
 						correctCount = correctCount + 1
-					else:
-						print "Incorrect match"
+					#else:
+						#print "Incorrect match"
 				except TypeError:
-					print "Incorrect match"
-			print "accuracy computed as %s" % str(correctCount*100.0 / rowNum)
+					pass
+
+				
 
 				#Save test case to the test suite for later use
-				#snippets[0].export("test_suite_originals/" + trackName + "__" + str(rowNum) + ".mp3", format="mp3")
-				#snippets[1].export("test_suite_overlays/" + trackName + "__" + str(rowNum) + ".mp3", format="mp3")
-				
+				snippets[0].export("test_suite_originals/" + genreDir + "/" + trackName + "__" + str(rowNum) + ".mp3", format="mp3")
+				snippets[1].export("test_suite_overlays/" + genreDir + "/" + trackName + "__" + str(rowNum) + ".mp3", format="mp3")
+			print "accuracy computed as %s" % str(correctCount*100.0 / rowNum)
+			print "average match time computed as %s" % str(totalMatchTime / rowNum)
 
 	
 			
