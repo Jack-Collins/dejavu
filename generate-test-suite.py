@@ -15,6 +15,7 @@ def composeTestCase(pathToOriginalSong, timeSnippet, originalSongVolumeShift, ov
 	originalAudio = AudioSegment.from_mp3(pathToOriginalSong)
 	audioSnippet = trimAudio(originalAudio, timeSnippet, 10000)
 	originalSnippet = audioSnippet
+	print(audioSnippet.dBFS)
 	audioSnippet = audioSnippet  + originalSongVolumeShift
 	for noise in overlayedNoiseVolumeShifts.keys():
 		overlay = AudioSegment.from_mp3(noise)

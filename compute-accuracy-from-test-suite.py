@@ -48,7 +48,7 @@ if __name__ == '__main__':
 	
 				snippets[0].export("overlays/original-snippet.mp3", format="mp3")
 				snippets[1].export("overlays/overlayed-track.mp3", format="mp3")
-	
+				print(snippets[0] /(snippets[0].dBFS))
 				#save resulting audio:
 	
 				# create a Dejavu instance
